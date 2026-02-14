@@ -1,0 +1,290 @@
+[
+  {
+    "id": "segura",
+    "name": "Rio Segura",
+    "area": 18870,
+    "cn": 75,
+    "tc": 24,
+    "slope": 3.2,
+    "cauceLength": 325,
+    "center": [
+      38.05,
+      -1.13
+    ],
+    "bounds": {
+      "north": 38.5,
+      "south": 37.8,
+      "east": -0.7,
+      "west": -2
+    },
+    "thresholds": {
+      "yellow": 100,
+      "orange": 300,
+      "red": 600
+    }
+  },
+  {
+    "id": "guadalentin",
+    "name": "Rio Guadalentin",
+    "area": 3300,
+    "cn": 78,
+    "tc": 8,
+    "slope": 4.5,
+    "cauceLength": 121,
+    "center": [
+      37.78,
+      -1.7
+    ],
+    "bounds": {
+      "north": 38,
+      "south": 37.4,
+      "east": -1.3,
+      "west": -2.5
+    },
+    "thresholds": {
+      "yellow": 50,
+      "orange": 150,
+      "red": 350
+    }
+  },
+  {
+    "id": "mula",
+    "name": "Rio Mula",
+    "area": 651,
+    "cn": 72,
+    "tc": 5,
+    "slope": 5.1,
+    "cauceLength": 64,
+    "center": [
+      38.04,
+      -1.49
+    ],
+    "bounds": {
+      "north": 38.2,
+      "south": 37.9,
+      "east": -1.3,
+      "west": -1.7
+    },
+    "thresholds": {
+      "yellow": 30,
+      "orange": 80,
+      "red": 200
+    }
+  },
+  {
+    "id": "mundo",
+    "name": "Rio Mundo",
+    "area": 2420,
+    "cn": 70,
+    "tc": 12,
+    "slope": 3.8,
+    "cauceLength": 150,
+    "center": [
+      38.48,
+      -2.1
+    ],
+    "bounds": {
+      "north": 38.7,
+      "south": 38.2,
+      "east": -1.7,
+      "west": -2.5
+    },
+    "thresholds": {
+      "yellow": 60,
+      "orange": 180,
+      "red": 400
+    }
+  },
+  {
+    "id": "almanzora",
+    "name": "Rio Almanzora",
+    "area": 2611,
+    "cn": 80,
+    "tc": 10,
+    "slope": 3.5,
+    "cauceLength": 105,
+    "center": [
+      37.35,
+      -2.1
+    ],
+    "bounds": {
+      "north": 37.5,
+      "south": 37.1,
+      "east": -1.7,
+      "west": -2.6
+    },
+    "thresholds": {
+      "yellow": 30,
+      "orange": 100,
+      "red": 250
+    }
+  },
+  {
+    "id": "andarax",
+    "name": "Rio Andarax",
+    "area": 2200,
+    "cn": 77,
+    "tc": 9,
+    "slope": 4.2,
+    "cauceLength": 65,
+    "center": [
+      36.95,
+      -2.5
+    ],
+    "bounds": {
+      "north": 37.2,
+      "south": 36.8,
+      "east": -2.2,
+      "west": -2.9
+    },
+    "thresholds": {
+      "yellow": 25,
+      "orange": 80,
+      "red": 200
+    }
+  },
+  {
+    "id": "vinalopo",
+    "name": "Rio Vinalopo",
+    "area": 1692,
+    "cn": 74,
+    "tc": 7,
+    "slope": 3.9,
+    "cauceLength": 81,
+    "center": [
+      38.35,
+      -0.8
+    ],
+    "bounds": {
+      "north": 38.6,
+      "south": 38.1,
+      "east": -0.5,
+      "west": -1.1
+    },
+    "thresholds": {
+      "yellow": 40,
+      "orange": 120,
+      "red": 280
+    }
+  },
+  {
+    "id": "guadalfeo",
+    "name": "Rio Guadalfeo",
+    "area": 1300,
+    "cn": 73,
+    "tc": 6,
+    "slope": 8.5,
+    "cauceLength": 71,
+    "center": [
+      36.85,
+      -3.35
+    ],
+    "bounds": {
+      "north": 37.1,
+      "south": 36.7,
+      "east": -3.1,
+      "west": -3.6
+    },
+    "thresholds": {
+      "yellow": 35,
+      "orange": 100,
+      "red": 250
+    }
+  },
+  {
+    "id": "nacimiento",
+    "name": "Rio Nacimiento",
+    "area": 987,
+    "cn": 76,
+    "tc": 5.5,
+    "slope": 5.8,
+    "cauceLength": 58,
+    "center": [
+      37.15,
+      -2.65
+    ],
+    "bounds": {
+      "north": 37.3,
+      "south": 37,
+      "east": -2.4,
+      "west": -2.9
+    },
+    "thresholds": {
+      "yellow": 25,
+      "orange": 70,
+      "red": 180
+    }
+  },
+  {
+    "id": "adra",
+    "name": "Rio Adra",
+    "area": 744,
+    "cn": 75,
+    "tc": 4.5,
+    "slope": 7.2,
+    "cauceLength": 45,
+    "center": [
+      36.85,
+      -2.95
+    ],
+    "bounds": {
+      "north": 37,
+      "south": 36.7,
+      "east": -2.7,
+      "west": -3.2
+    },
+    "thresholds": {
+      "yellow": 20,
+      "orange": 60,
+      "red": 150
+    }
+  },
+  {
+    "id": "serpis",
+    "name": "Rio Serpis",
+    "area": 752,
+    "cn": 71,
+    "tc": 5,
+    "slope": 4.8,
+    "cauceLength": 75,
+    "center": [
+      38.85,
+      -0.3
+    ],
+    "bounds": {
+      "north": 39,
+      "south": 38.7,
+      "east": -0.1,
+      "west": -0.55
+    },
+    "thresholds": {
+      "yellow": 40,
+      "orange": 110,
+      "red": 260
+    }
+  },
+  {
+    "id": "jucar_bajo",
+    "name": "Jucar Bajo",
+    "area": 4600,
+    "cn": 72,
+    "tc": 15,
+    "slope": 2.8,
+    "cauceLength": 180,
+    "center": [
+      39.1,
+      -0.5
+    ],
+    "bounds": {
+      "north": 39.3,
+      "south": 38.9,
+      "east": -0.2,
+      "west": -0.9
+    },
+    "thresholds": {
+      "yellow": 80,
+      "orange": 250,
+      "red": 500
+    }
+  }
+]
