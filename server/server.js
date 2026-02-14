@@ -10,6 +10,7 @@ const SuremetScraper = require('./services/suremet-scraper');
 const HydroEngine = require('./services/hydro-engine');
 const RadarAemet = require('./services/radar-aemet');
 const AlertEngine = require('./services/alert-engine');
+const SpatialInterpolator = require('./services/spatial-interpolator');
 const basins = require('./config/basins.json');
 
 const app = express();
@@ -25,7 +26,8 @@ const state = {
   basins: new Map(),
   alerts: [],
   lastUpdate: null,
-  radarData: null
+  radarData: null,
+  radarGrid: null // Grilla de reflectividad para fusion
 };
 
 basins.forEach(b => state.basins.set(b.id, { ...b, currentFlow: 0, alerts: [] }));
@@ -34,6 +36,7 @@ const scraper = new SuremetScraper();
 const hydro = new HydroEngine();
 const radar = new RadarAemet(process.env.AEMET_API_KEY);
 const alertEngine = new AlertEngine();
+const spatial = new SpatialInterpolator();
 
 function broadcast(type, data) {
   const msg = JSON.stringify({ type, data, timestamp: new Date().toISOString() });
@@ -49,19 +52,24 @@ async function updateCycle() {
     stationData.forEach(s => state.stations.set(s.id, s));
     state.lastUpdate = new Date().toISOString();
 
+    // Para cada cuenca: interpolacion espacial + fusion radar + calculo hidrologico
     for (const [id, basin] of state.basins) {
-      const basinStations = stationData.filter(s =>
-        s.lat >= basin.bounds.south && s.lat <= basin.bounds.north &&
-        s.lon >= basin.bounds.west && s.lon <= basin.bounds.east
+      // 1. Estimar precipitacion areal con interpolacion + fusion radar
+      const precipEstimate = spatial.estimateBasinPrecipitation(
+        basin, stationData, radar, state.radarGrid
       );
-      if (basinStations.length > 0) {
-        const avgPrecip = basinStations.reduce((sum, s) => sum + (s.precipitation || 0), 0) / basinStations.length;
-        const maxIntensity = Math.max(...basinStations.map(s => s.intensity || 0));
+
+      // 2. Usar la precipitacion media areal para el calculo hidrologico
+      const avgPrecip = precipEstimate.meanPrecip;
+      const maxIntensity = precipEstimate.maxPrecip; // Usar maxima como intensidad critica
+
+      if (avgPrecip > 0 || maxIntensity > 0) {
         const result = hydro.calculateFlow(basin, avgPrecip, maxIntensity);
         basin.currentFlow = result.peakFlow;
         basin.precipitation = avgPrecip;
         basin.intensity = maxIntensity;
         basin.hydroResult = result;
+        basin.spatialEstimate = precipEstimate;
       }
     }
 
@@ -82,6 +90,8 @@ async function updateRadar() {
   try {
     if (process.env.AEMET_API_KEY) {
       state.radarData = await radar.fetchRadarData();
+      // TODO: Parsear imagen radar a grilla de reflectividad
+      // state.radarGrid = radar.parseRadarImage(state.radarData);
       broadcast('radar', state.radarData);
     }
   } catch (err) {
