@@ -1,13 +1,10 @@
 [
   {
-    "id": "segura",
-    "name": "Rio Segura",
+    "id": "segura_principal",
+    "name": "Rio Segura - Cuenca Principal",
+    "type": "main_basin",
     "area": 18870,
-    "cn": 75,
-    "tc": 24,
-    "slope": 3.2,
-    "cauceLength": 325,
-    "center": [
+    "controlPoint": [
       38.05,
       -1.13
     ],
@@ -18,22 +15,203 @@
       "west": -2
     },
     "thresholds": {
-      "yellow": 100,
-      "orange": 300,
-      "red": 600
-    }
+      "yellow": 150,
+      "orange": 400,
+      "red": 800
+    },
+    "subcatchments": [
+      {
+        "id": "segura_cabecera",
+        "name": "Segura Cabecera (Pontones-Mundo)",
+        "area": 1280,
+        "cn": 68,
+        "slope": 12.5,
+        "cauceLength": 45,
+        "tc": 4.2,
+        "storageCoeff": 3,
+        "center": [
+          38.42,
+          -2.55
+        ],
+        "bounds": {
+          "north": 38.55,
+          "south": 38.3,
+          "east": -2.3,
+          "west": -2.8
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 3.5,
+          "X": 0.25,
+          "reaches": 4
+        }
+      },
+      {
+        "id": "segura_mundo",
+        "name": "Rio Mundo",
+        "area": 2420,
+        "cn": 70,
+        "slope": 8.2,
+        "cauceLength": 150,
+        "tc": 12,
+        "storageCoeff": 8.4,
+        "center": [
+          38.48,
+          -2.1
+        ],
+        "bounds": {
+          "north": 38.7,
+          "south": 38.2,
+          "east": -1.7,
+          "west": -2.5
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 4,
+          "X": 0.2,
+          "reaches": 5
+        }
+      },
+      {
+        "id": "segura_medio_moratalla",
+        "name": "Segura Medio (Moratalla-Calasparra)",
+        "area": 1850,
+        "cn": 73,
+        "slope": 5.8,
+        "cauceLength": 65,
+        "tc": 6.5,
+        "storageCoeff": 4.5,
+        "center": [
+          38.22,
+          -1.85
+        ],
+        "bounds": {
+          "north": 38.4,
+          "south": 38.05,
+          "east": -1.6,
+          "west": -2.1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2.5,
+          "X": 0.25,
+          "reaches": 3
+        }
+      },
+      {
+        "id": "segura_mula",
+        "name": "Rio Mula",
+        "area": 651,
+        "cn": 72,
+        "slope": 5.1,
+        "cauceLength": 64,
+        "tc": 5,
+        "storageCoeff": 3.5,
+        "center": [
+          38.04,
+          -1.49
+        ],
+        "bounds": {
+          "north": 38.2,
+          "south": 37.9,
+          "east": -1.3,
+          "west": -1.7
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.8,
+          "X": 0.3,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "segura_guadalentin",
+        "name": "Rio Guadalentin",
+        "area": 3300,
+        "cn": 78,
+        "slope": 4.5,
+        "cauceLength": 121,
+        "tc": 8,
+        "storageCoeff": 5.6,
+        "center": [
+          37.78,
+          -1.7
+        ],
+        "bounds": {
+          "north": 38,
+          "south": 37.4,
+          "east": -1.3,
+          "west": -2.5
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "segura_vega_media",
+        "name": "Vega Media (Archena-Murcia)",
+        "area": 1200,
+        "cn": 80,
+        "slope": 1.5,
+        "cauceLength": 40,
+        "tc": 5.5,
+        "storageCoeff": 4,
+        "center": [
+          38,
+          -1.2
+        ],
+        "bounds": {
+          "north": 38.15,
+          "south": 37.85,
+          "east": -1,
+          "west": -1.4
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.3,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "segura_vega_baja",
+        "name": "Vega Baja (Orihuela-Guardamar)",
+        "area": 980,
+        "cn": 82,
+        "slope": 0.8,
+        "cauceLength": 35,
+        "tc": 6,
+        "storageCoeff": 4.5,
+        "center": [
+          38.05,
+          -0.88
+        ],
+        "bounds": {
+          "north": 38.15,
+          "south": 37.95,
+          "east": -0.65,
+          "west": -1.05
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1,
+          "X": 0.35,
+          "reaches": 1
+        }
+      }
+    ]
   },
   {
     "id": "guadalentin",
-    "name": "Rio Guadalentin",
+    "name": "Rio Guadalentin (detalle)",
+    "type": "main_basin",
     "area": 3300,
-    "cn": 78,
-    "tc": 8,
-    "slope": 4.5,
-    "cauceLength": 121,
-    "center": [
-      37.78,
-      -1.7
+    "controlPoint": [
+      37.85,
+      -1.48
     ],
     "bounds": {
       "north": 38,
@@ -42,70 +220,431 @@
       "west": -2.5
     },
     "thresholds": {
-      "yellow": 50,
-      "orange": 150,
-      "red": 350
-    }
-  },
-  {
-    "id": "mula",
-    "name": "Rio Mula",
-    "area": 651,
-    "cn": 72,
-    "tc": 5,
-    "slope": 5.1,
-    "cauceLength": 64,
-    "center": [
-      38.04,
-      -1.49
-    ],
-    "bounds": {
-      "north": 38.2,
-      "south": 37.9,
-      "east": -1.3,
-      "west": -1.7
-    },
-    "thresholds": {
-      "yellow": 30,
-      "orange": 80,
-      "red": 200
-    }
-  },
-  {
-    "id": "mundo",
-    "name": "Rio Mundo",
-    "area": 2420,
-    "cn": 70,
-    "tc": 12,
-    "slope": 3.8,
-    "cauceLength": 150,
-    "center": [
-      38.48,
-      -2.1
-    ],
-    "bounds": {
-      "north": 38.7,
-      "south": 38.2,
-      "east": -1.7,
-      "west": -2.5
-    },
-    "thresholds": {
       "yellow": 60,
       "orange": 180,
       "red": 400
-    }
+    },
+    "subcatchments": [
+      {
+        "id": "guadalentin_cabecera",
+        "name": "Guadalentin Cabecera (Velez Rubio)",
+        "area": 520,
+        "cn": 75,
+        "slope": 8.5,
+        "cauceLength": 35,
+        "tc": 3.5,
+        "storageCoeff": 2.5,
+        "center": [
+          37.58,
+          -2.15
+        ],
+        "bounds": {
+          "north": 37.7,
+          "south": 37.45,
+          "east": -1.95,
+          "west": -2.35
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 3,
+          "X": 0.2,
+          "reaches": 4
+        }
+      },
+      {
+        "id": "guadalentin_lorca",
+        "name": "Guadalentin Medio (Lorca)",
+        "area": 850,
+        "cn": 77,
+        "slope": 4.2,
+        "cauceLength": 40,
+        "tc": 4.5,
+        "storageCoeff": 3.2,
+        "center": [
+          37.68,
+          -1.72
+        ],
+        "bounds": {
+          "north": 37.8,
+          "south": 37.55,
+          "east": -1.55,
+          "west": -1.95
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2,
+          "X": 0.25,
+          "reaches": 3
+        }
+      },
+      {
+        "id": "guadalentin_nogalte",
+        "name": "Rambla de Nogalte",
+        "area": 137,
+        "cn": 82,
+        "slope": 6.8,
+        "cauceLength": 38,
+        "tc": 2.8,
+        "storageCoeff": 2,
+        "center": [
+          37.6,
+          -1.78
+        ],
+        "bounds": {
+          "north": 37.7,
+          "south": 37.5,
+          "east": -1.65,
+          "west": -1.9
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.3,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "guadalentin_librilla",
+        "name": "Guadalentin Bajo (Librilla-Sangonera)",
+        "area": 680,
+        "cn": 79,
+        "slope": 2.8,
+        "cauceLength": 30,
+        "tc": 4,
+        "storageCoeff": 3,
+        "center": [
+          37.85,
+          -1.45
+        ],
+        "bounds": {
+          "north": 37.95,
+          "south": 37.75,
+          "east": -1.3,
+          "west": -1.6
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramblas_murcia",
+    "name": "Ramblas y Arroyos - Region de Murcia",
+    "type": "flash_flood_group",
+    "area": 890,
+    "controlPoint": [
+      37.75,
+      -1.2
+    ],
+    "bounds": {
+      "north": 38.1,
+      "south": 37.4,
+      "east": -0.7,
+      "west": -1.8
+    },
+    "thresholds": {
+      "yellow": 15,
+      "orange": 40,
+      "red": 80
+    },
+    "subcatchments": [
+      {
+        "id": "rambla_albujon",
+        "name": "Rambla del Albujon",
+        "area": 605,
+        "cn": 84,
+        "slope": 1.2,
+        "cauceLength": 42,
+        "tc": 4.5,
+        "storageCoeff": 3.5,
+        "center": [
+          37.72,
+          -1
+        ],
+        "bounds": {
+          "north": 37.85,
+          "south": 37.6,
+          "east": -0.75,
+          "west": -1.25
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.2,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_benipila",
+        "name": "Rambla de Benipila",
+        "area": 43,
+        "cn": 86,
+        "slope": 3.5,
+        "cauceLength": 12,
+        "tc": 1.2,
+        "storageCoeff": 0.8,
+        "center": [
+          37.62,
+          -1.02
+        ],
+        "bounds": {
+          "north": 37.66,
+          "south": 37.58,
+          "east": -0.95,
+          "west": -1.1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.4,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_churra",
+        "name": "Rambla de Churra (El Garruchal)",
+        "area": 28,
+        "cn": 85,
+        "slope": 5.2,
+        "cauceLength": 8,
+        "tc": 0.8,
+        "storageCoeff": 0.6,
+        "center": [
+          38.02,
+          -1.1
+        ],
+        "bounds": {
+          "north": 38.06,
+          "south": 37.98,
+          "east": -1.04,
+          "west": -1.16
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.3,
+          "X": 0.4,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_abanilla",
+        "name": "Rambla de Abanilla (Chicamo)",
+        "area": 214,
+        "cn": 80,
+        "slope": 3.8,
+        "cauceLength": 35,
+        "tc": 3,
+        "storageCoeff": 2.1,
+        "center": [
+          38.2,
+          -1.05
+        ],
+        "bounds": {
+          "north": 38.3,
+          "south": 38.1,
+          "east": -0.9,
+          "west": -1.2
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramblas_almeria",
+    "name": "Ramblas y Arroyos - Almeria",
+    "type": "flash_flood_group",
+    "area": 1650,
+    "controlPoint": [
+      36.95,
+      -2.3
+    ],
+    "bounds": {
+      "north": 37.4,
+      "south": 36.7,
+      "east": -1.7,
+      "west": -3
+    },
+    "thresholds": {
+      "yellow": 15,
+      "orange": 40,
+      "red": 80
+    },
+    "subcatchments": [
+      {
+        "id": "rambla_andarax",
+        "name": "Rio Andarax",
+        "area": 750,
+        "cn": 77,
+        "slope": 7.5,
+        "cauceLength": 65,
+        "tc": 5.2,
+        "storageCoeff": 3.6,
+        "center": [
+          36.95,
+          -2.5
+        ],
+        "bounds": {
+          "north": 37.15,
+          "south": 36.8,
+          "east": -2.2,
+          "west": -2.85
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "rambla_nacimiento",
+        "name": "Rio Nacimiento",
+        "area": 520,
+        "cn": 76,
+        "slope": 5.8,
+        "cauceLength": 58,
+        "tc": 5,
+        "storageCoeff": 3.5,
+        "center": [
+          37.15,
+          -2.65
+        ],
+        "bounds": {
+          "north": 37.3,
+          "south": 37,
+          "east": -2.4,
+          "west": -2.9
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "rambla_tabernas",
+        "name": "Rambla de Tabernas",
+        "area": 122,
+        "cn": 85,
+        "slope": 4.2,
+        "cauceLength": 22,
+        "tc": 2,
+        "storageCoeff": 1.4,
+        "center": [
+          37.05,
+          -2.38
+        ],
+        "bounds": {
+          "north": 37.12,
+          "south": 36.98,
+          "east": -2.28,
+          "west": -2.48
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.8,
+          "X": 0.3,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_morales",
+        "name": "Rambla de los Morales",
+        "area": 68,
+        "cn": 87,
+        "slope": 3.5,
+        "cauceLength": 15,
+        "tc": 1.5,
+        "storageCoeff": 1,
+        "center": [
+          36.82,
+          -2.15
+        ],
+        "bounds": {
+          "north": 36.88,
+          "south": 36.76,
+          "east": -2.05,
+          "west": -2.25
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_carboneras",
+        "name": "Rambla del Alias (Carboneras)",
+        "area": 95,
+        "cn": 86,
+        "slope": 5,
+        "cauceLength": 18,
+        "tc": 1.6,
+        "storageCoeff": 1.1,
+        "center": [
+          36.95,
+          -1.95
+        ],
+        "bounds": {
+          "north": 37.02,
+          "south": 36.88,
+          "east": -1.85,
+          "west": -2.05
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.6,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_aguas",
+        "name": "Rio Aguas (Sorbas-Mojacar)",
+        "area": 95,
+        "cn": 83,
+        "slope": 6.2,
+        "cauceLength": 28,
+        "tc": 2.2,
+        "storageCoeff": 1.5,
+        "center": [
+          37.1,
+          -1.95
+        ],
+        "bounds": {
+          "north": 37.2,
+          "south": 37,
+          "east": -1.8,
+          "west": -2.1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.8,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
   },
   {
     "id": "almanzora",
     "name": "Rio Almanzora",
+    "type": "main_basin",
     "area": 2611,
-    "cn": 80,
-    "tc": 10,
-    "slope": 3.5,
-    "cauceLength": 105,
-    "center": [
-      37.35,
-      -2.1
+    "controlPoint": [
+      37.25,
+      -1.85
     ],
     "bounds": {
       "north": 37.5,
@@ -114,46 +653,125 @@
       "west": -2.6
     },
     "thresholds": {
-      "yellow": 30,
-      "orange": 100,
-      "red": 250
-    }
-  },
-  {
-    "id": "andarax",
-    "name": "Rio Andarax",
-    "area": 2200,
-    "cn": 77,
-    "tc": 9,
-    "slope": 4.2,
-    "cauceLength": 65,
-    "center": [
-      36.95,
-      -2.5
-    ],
-    "bounds": {
-      "north": 37.2,
-      "south": 36.8,
-      "east": -2.2,
-      "west": -2.9
+      "yellow": 35,
+      "orange": 120,
+      "red": 280
     },
-    "thresholds": {
-      "yellow": 25,
-      "orange": 80,
-      "red": 200
-    }
+    "subcatchments": [
+      {
+        "id": "almanzora_cabecera",
+        "name": "Almanzora Cabecera (Bacares-Bayarque)",
+        "area": 380,
+        "cn": 72,
+        "slope": 14,
+        "cauceLength": 30,
+        "tc": 2.8,
+        "storageCoeff": 2,
+        "center": [
+          37.35,
+          -2.45
+        ],
+        "bounds": {
+          "north": 37.45,
+          "south": 37.25,
+          "east": -2.3,
+          "west": -2.6
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 3.5,
+          "X": 0.2,
+          "reaches": 4
+        }
+      },
+      {
+        "id": "almanzora_medio",
+        "name": "Almanzora Medio (Purchena-Albox)",
+        "area": 820,
+        "cn": 78,
+        "slope": 4.5,
+        "cauceLength": 40,
+        "tc": 4.5,
+        "storageCoeff": 3.2,
+        "center": [
+          37.35,
+          -2.2
+        ],
+        "bounds": {
+          "north": 37.45,
+          "south": 37.2,
+          "east": -2,
+          "west": -2.4
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2.5,
+          "X": 0.25,
+          "reaches": 3
+        }
+      },
+      {
+        "id": "almanzora_bajo",
+        "name": "Almanzora Bajo (Huercal-Overa - Desembocadura)",
+        "area": 650,
+        "cn": 81,
+        "slope": 2.2,
+        "cauceLength": 35,
+        "tc": 4,
+        "storageCoeff": 3,
+        "center": [
+          37.25,
+          -1.9
+        ],
+        "bounds": {
+          "north": 37.35,
+          "south": 37.15,
+          "east": -1.7,
+          "west": -2.1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1,
+          "X": 0.3,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_albox",
+        "name": "Rambla de Albox",
+        "area": 152,
+        "cn": 83,
+        "slope": 5.5,
+        "cauceLength": 18,
+        "tc": 1.8,
+        "storageCoeff": 1.3,
+        "center": [
+          37.4,
+          -2.15
+        ],
+        "bounds": {
+          "north": 37.48,
+          "south": 37.32,
+          "east": -2.05,
+          "west": -2.25
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.3,
+          "reaches": 2
+        }
+      }
+    ]
   },
   {
     "id": "vinalopo",
     "name": "Rio Vinalopo",
+    "type": "main_basin",
     "area": 1692,
-    "cn": 74,
-    "tc": 7,
-    "slope": 3.9,
-    "cauceLength": 81,
-    "center": [
+    "controlPoint": [
       38.35,
-      -0.8
+      -0.75
     ],
     "bounds": {
       "north": 38.6,
@@ -163,21 +781,427 @@
     },
     "thresholds": {
       "yellow": 40,
-      "orange": 120,
+      "orange": 130,
+      "red": 300
+    },
+    "subcatchments": [
+      {
+        "id": "vinalopo_alto",
+        "name": "Vinalopo Alto (Banyeres-Villena)",
+        "area": 520,
+        "cn": 70,
+        "slope": 6.5,
+        "cauceLength": 35,
+        "tc": 3.5,
+        "storageCoeff": 2.5,
+        "center": [
+          38.55,
+          -0.85
+        ],
+        "bounds": {
+          "north": 38.65,
+          "south": 38.45,
+          "east": -0.7,
+          "west": -1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2.5,
+          "X": 0.25,
+          "reaches": 3
+        }
+      },
+      {
+        "id": "vinalopo_medio",
+        "name": "Vinalopo Medio (Elda-Novelda)",
+        "area": 580,
+        "cn": 74,
+        "slope": 3.2,
+        "cauceLength": 30,
+        "tc": 3.8,
+        "storageCoeff": 2.7,
+        "center": [
+          38.4,
+          -0.78
+        ],
+        "bounds": {
+          "north": 38.5,
+          "south": 38.3,
+          "east": -0.65,
+          "west": -0.95
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.3,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "vinalopo_bajo",
+        "name": "Vinalopo Bajo (Elche-Desembocadura)",
+        "area": 420,
+        "cn": 80,
+        "slope": 1,
+        "cauceLength": 25,
+        "tc": 4.5,
+        "storageCoeff": 3.5,
+        "center": [
+          38.25,
+          -0.68
+        ],
+        "bounds": {
+          "north": 38.35,
+          "south": 38.15,
+          "east": -0.5,
+          "west": -0.85
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.8,
+          "X": 0.35,
+          "reaches": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramblas_alicante",
+    "name": "Ramblas y Barrancos - Alicante",
+    "type": "flash_flood_group",
+    "area": 520,
+    "controlPoint": [
+      38.4,
+      -0.45
+    ],
+    "bounds": {
+      "north": 38.8,
+      "south": 38,
+      "east": -0.1,
+      "west": -0.9
+    },
+    "thresholds": {
+      "yellow": 15,
+      "orange": 40,
+      "red": 80
+    },
+    "subcatchments": [
+      {
+        "id": "barranco_bonhigon",
+        "name": "Barranco de Bonhigon (Alicante)",
+        "area": 18,
+        "cn": 88,
+        "slope": 8,
+        "cauceLength": 6,
+        "tc": 0.5,
+        "storageCoeff": 0.35,
+        "center": [
+          38.37,
+          -0.48
+        ],
+        "bounds": {
+          "north": 38.4,
+          "south": 38.34,
+          "east": -0.43,
+          "west": -0.53
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.2,
+          "X": 0.4,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "barranco_jijona",
+        "name": "Barranco de la Torre (Jijona)",
+        "area": 65,
+        "cn": 78,
+        "slope": 12,
+        "cauceLength": 15,
+        "tc": 1.2,
+        "storageCoeff": 0.8,
+        "center": [
+          38.52,
+          -0.52
+        ],
+        "bounds": {
+          "north": 38.58,
+          "south": 38.46,
+          "east": -0.44,
+          "west": -0.6
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_gallinera",
+        "name": "Rio Gallinera (Vall de Gallinera)",
+        "area": 82,
+        "cn": 72,
+        "slope": 15,
+        "cauceLength": 20,
+        "tc": 1.5,
+        "storageCoeff": 1,
+        "center": [
+          38.82,
+          -0.25
+        ],
+        "bounds": {
+          "north": 38.88,
+          "south": 38.76,
+          "east": -0.15,
+          "west": -0.35
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.6,
+          "X": 0.3,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_racons",
+        "name": "Rio Racons (Pego-Oliva)",
+        "area": 115,
+        "cn": 73,
+        "slope": 10,
+        "cauceLength": 22,
+        "tc": 1.8,
+        "storageCoeff": 1.3,
+        "center": [
+          38.85,
+          -0.12
+        ],
+        "bounds": {
+          "north": 38.92,
+          "south": 38.78,
+          "east": -0.02,
+          "west": -0.22
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.7,
+          "X": 0.3,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_orgegia",
+        "name": "Barranco de las Ovejas (Alicante)",
+        "area": 48,
+        "cn": 87,
+        "slope": 4.5,
+        "cauceLength": 10,
+        "tc": 0.9,
+        "storageCoeff": 0.6,
+        "center": [
+          38.38,
+          -0.43
+        ],
+        "bounds": {
+          "north": 38.42,
+          "south": 38.34,
+          "east": -0.37,
+          "west": -0.49
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.3,
+          "X": 0.4,
+          "reaches": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "serpis",
+    "name": "Rio Serpis",
+    "type": "main_basin",
+    "area": 752,
+    "controlPoint": [
+      38.85,
+      -0.18
+    ],
+    "bounds": {
+      "north": 39,
+      "south": 38.7,
+      "east": -0.05,
+      "west": -0.55
+    },
+    "thresholds": {
+      "yellow": 45,
+      "orange": 130,
       "red": 280
-    }
+    },
+    "subcatchments": [
+      {
+        "id": "serpis_alto",
+        "name": "Serpis Alto (Alcoi-Concentaina)",
+        "area": 320,
+        "cn": 70,
+        "slope": 8.5,
+        "cauceLength": 30,
+        "tc": 3,
+        "storageCoeff": 2.1,
+        "center": [
+          38.82,
+          -0.45
+        ],
+        "bounds": {
+          "north": 38.92,
+          "south": 38.72,
+          "east": -0.32,
+          "west": -0.55
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "serpis_bajo",
+        "name": "Serpis Bajo (Gandia)",
+        "area": 432,
+        "cn": 75,
+        "slope": 3,
+        "cauceLength": 25,
+        "tc": 3.5,
+        "storageCoeff": 2.5,
+        "center": [
+          38.88,
+          -0.2
+        ],
+        "bounds": {
+          "north": 38.96,
+          "south": 38.78,
+          "east": -0.05,
+          "west": -0.35
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.8,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "jucar_bajo",
+    "name": "Jucar Bajo",
+    "type": "main_basin",
+    "area": 4600,
+    "controlPoint": [
+      39.1,
+      -0.4
+    ],
+    "bounds": {
+      "north": 39.3,
+      "south": 38.9,
+      "east": -0.15,
+      "west": -0.9
+    },
+    "thresholds": {
+      "yellow": 90,
+      "orange": 280,
+      "red": 550
+    },
+    "subcatchments": [
+      {
+        "id": "jucar_tous_antella",
+        "name": "Jucar (Tous-Antella)",
+        "area": 1200,
+        "cn": 71,
+        "slope": 4.5,
+        "cauceLength": 45,
+        "tc": 5,
+        "storageCoeff": 3.5,
+        "center": [
+          39.1,
+          -0.75
+        ],
+        "bounds": {
+          "north": 39.2,
+          "south": 39,
+          "east": -0.6,
+          "west": -0.9
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2.5,
+          "X": 0.2,
+          "reaches": 3
+        }
+      },
+      {
+        "id": "jucar_magro",
+        "name": "Rio Magro",
+        "area": 1500,
+        "cn": 73,
+        "slope": 3.8,
+        "cauceLength": 65,
+        "tc": 7,
+        "storageCoeff": 4.9,
+        "center": [
+          39.18,
+          -0.65
+        ],
+        "bounds": {
+          "north": 39.3,
+          "south": 39.05,
+          "east": -0.5,
+          "west": -0.85
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "jucar_ribera",
+        "name": "Ribera del Jucar (Alzira-Cullera)",
+        "area": 1900,
+        "cn": 78,
+        "slope": 0.8,
+        "cauceLength": 40,
+        "tc": 7.5,
+        "storageCoeff": 5.5,
+        "center": [
+          39.1,
+          -0.35
+        ],
+        "bounds": {
+          "north": 39.22,
+          "south": 38.98,
+          "east": -0.15,
+          "west": -0.55
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.2,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
   },
   {
     "id": "guadalfeo",
     "name": "Rio Guadalfeo",
+    "type": "main_basin",
     "area": 1300,
-    "cn": 73,
-    "tc": 6,
-    "slope": 8.5,
-    "cauceLength": 71,
-    "center": [
-      36.85,
-      -3.35
+    "controlPoint": [
+      36.78,
+      -3.38
     ],
     "bounds": {
       "north": 37.1,
@@ -186,46 +1210,99 @@
       "west": -3.6
     },
     "thresholds": {
-      "yellow": 35,
-      "orange": 100,
-      "red": 250
-    }
-  },
-  {
-    "id": "nacimiento",
-    "name": "Rio Nacimiento",
-    "area": 987,
-    "cn": 76,
-    "tc": 5.5,
-    "slope": 5.8,
-    "cauceLength": 58,
-    "center": [
-      37.15,
-      -2.65
-    ],
-    "bounds": {
-      "north": 37.3,
-      "south": 37,
-      "east": -2.4,
-      "west": -2.9
+      "yellow": 40,
+      "orange": 120,
+      "red": 280
     },
-    "thresholds": {
-      "yellow": 25,
-      "orange": 70,
-      "red": 180
-    }
+    "subcatchments": [
+      {
+        "id": "guadalfeo_alto",
+        "name": "Guadalfeo Alto (Trevelez-Lanjaron)",
+        "area": 480,
+        "cn": 68,
+        "slope": 22,
+        "cauceLength": 25,
+        "tc": 2,
+        "storageCoeff": 1.4,
+        "center": [
+          36.95,
+          -3.4
+        ],
+        "bounds": {
+          "north": 37.08,
+          "south": 36.85,
+          "east": -3.25,
+          "west": -3.55
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.5,
+          "X": 0.2,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "guadalfeo_izagre",
+        "name": "Rio Izbor-Trevelez",
+        "area": 450,
+        "cn": 72,
+        "slope": 12,
+        "cauceLength": 30,
+        "tc": 2.5,
+        "storageCoeff": 1.8,
+        "center": [
+          36.9,
+          -3.45
+        ],
+        "bounds": {
+          "north": 37.02,
+          "south": 36.8,
+          "east": -3.32,
+          "west": -3.58
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "guadalfeo_bajo",
+        "name": "Guadalfeo Bajo (Motril)",
+        "area": 370,
+        "cn": 76,
+        "slope": 5,
+        "cauceLength": 20,
+        "tc": 2.5,
+        "storageCoeff": 1.8,
+        "center": [
+          36.78,
+          -3.35
+        ],
+        "bounds": {
+          "north": 36.88,
+          "south": 36.7,
+          "east": -3.2,
+          "west": -3.5
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
   },
   {
     "id": "adra",
     "name": "Rio Adra",
+    "type": "main_basin",
     "area": 744,
-    "cn": 75,
-    "tc": 4.5,
-    "slope": 7.2,
-    "cauceLength": 45,
-    "center": [
-      36.85,
-      -2.95
+    "controlPoint": [
+      36.75,
+      -3
     ],
     "bounds": {
       "north": 37,
@@ -234,57 +1311,190 @@
       "west": -3.2
     },
     "thresholds": {
-      "yellow": 20,
-      "orange": 60,
-      "red": 150
-    }
+      "yellow": 25,
+      "orange": 70,
+      "red": 170
+    },
+    "subcatchments": [
+      {
+        "id": "adra_alto",
+        "name": "Adra Alto (Ugiijar-Laujar)",
+        "area": 380,
+        "cn": 70,
+        "slope": 18,
+        "cauceLength": 22,
+        "tc": 1.8,
+        "storageCoeff": 1.3,
+        "center": [
+          36.92,
+          -3.05
+        ],
+        "bounds": {
+          "north": 37,
+          "south": 36.82,
+          "east": -2.9,
+          "west": -3.2
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 1.2,
+          "X": 0.25,
+          "reaches": 2
+        }
+      },
+      {
+        "id": "adra_bajo",
+        "name": "Adra Bajo (Berja-Desembocadura)",
+        "area": 364,
+        "cn": 78,
+        "slope": 5.5,
+        "cauceLength": 23,
+        "tc": 2.5,
+        "storageCoeff": 1.8,
+        "center": [
+          36.8,
+          -2.95
+        ],
+        "bounds": {
+          "north": 36.88,
+          "south": 36.7,
+          "east": -2.8,
+          "west": -3.1
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.3,
+          "reaches": 1
+        }
+      }
+    ]
   },
   {
-    "id": "serpis",
-    "name": "Rio Serpis",
-    "area": 752,
-    "cn": 71,
-    "tc": 5,
-    "slope": 4.8,
-    "cauceLength": 75,
-    "center": [
-      38.85,
-      -0.3
+    "id": "ramblas_campo_cartagena",
+    "name": "Ramblas Campo de Cartagena-Mar Menor",
+    "type": "flash_flood_group",
+    "area": 1250,
+    "controlPoint": [
+      37.7,
+      -0.85
     ],
     "bounds": {
-      "north": 39,
-      "south": 38.7,
-      "east": -0.1,
-      "west": -0.55
+      "north": 37.85,
+      "south": 37.55,
+      "east": -0.65,
+      "west": -1.2
     },
     "thresholds": {
-      "yellow": 40,
-      "orange": 110,
-      "red": 260
-    }
-  },
-  {
-    "id": "jucar_bajo",
-    "name": "Jucar Bajo",
-    "area": 4600,
-    "cn": 72,
-    "tc": 15,
-    "slope": 2.8,
-    "cauceLength": 180,
-    "center": [
-      39.1,
-      -0.5
-    ],
-    "bounds": {
-      "north": 39.3,
-      "south": 38.9,
-      "east": -0.2,
-      "west": -0.9
+      "yellow": 12,
+      "orange": 30,
+      "red": 60
     },
-    "thresholds": {
-      "yellow": 80,
-      "orange": 250,
-      "red": 500
-    }
+    "subcatchments": [
+      {
+        "id": "rambla_miranda",
+        "name": "Rambla de Miranda",
+        "area": 52,
+        "cn": 85,
+        "slope": 2.8,
+        "cauceLength": 15,
+        "tc": 1.5,
+        "storageCoeff": 1,
+        "center": [
+          37.65,
+          -0.88
+        ],
+        "bounds": {
+          "north": 37.7,
+          "south": 37.6,
+          "east": -0.8,
+          "west": -0.96
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.5,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_fuente_alamo",
+        "name": "Rambla de Fuente Alamo",
+        "area": 185,
+        "cn": 83,
+        "slope": 1.8,
+        "cauceLength": 28,
+        "tc": 2.8,
+        "storageCoeff": 2,
+        "center": [
+          37.72,
+          -1
+        ],
+        "bounds": {
+          "north": 37.8,
+          "south": 37.62,
+          "east": -0.88,
+          "west": -1.12
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.8,
+          "X": 0.35,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_beal",
+        "name": "Rambla del Beal",
+        "area": 38,
+        "cn": 87,
+        "slope": 1.5,
+        "cauceLength": 10,
+        "tc": 1.2,
+        "storageCoeff": 0.8,
+        "center": [
+          37.63,
+          -0.78
+        ],
+        "bounds": {
+          "north": 37.67,
+          "south": 37.59,
+          "east": -0.72,
+          "west": -0.84
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.3,
+          "X": 0.4,
+          "reaches": 1
+        }
+      },
+      {
+        "id": "rambla_albujones_marmenor",
+        "name": "Rambla del Albujones (Mar Menor)",
+        "area": 95,
+        "cn": 84,
+        "slope": 1.2,
+        "cauceLength": 18,
+        "tc": 2.2,
+        "storageCoeff": 1.5,
+        "center": [
+          37.73,
+          -0.82
+        ],
+        "bounds": {
+          "north": 37.78,
+          "south": 37.68,
+          "east": -0.74,
+          "west": -0.9
+        },
+        "routingToOutlet": {
+          "method": "muskingum",
+          "K": 0.6,
+          "X": 0.35,
+          "reaches": 1
+        }
+      }
+    ]
   }
 ]
