@@ -1,264 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HidroAlerta SE - Sistema de Alerta Temprana de Riadas</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --bg-primary: #0f1923; --bg-secondary: #1a2634; --bg-card: #243447; --text-primary: #e8eaed; --text-secondary: #9aa0a6; --accent: #4fc3f7; --accent-hover: #29b6f6; --danger: #ef5350; --warning: #ffa726; --success: #66bb6a; --border: #2d4055; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); overflow: hidden; height: 100vh; }
-    .app { display: grid; grid-template-rows: 56px 1fr; grid-template-columns: 320px 1fr; height: 100vh; }
-    .header { grid-column: 1 / -1; background: var(--bg-secondary); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 20px; justify-content: space-between; z-index: 1000; }
-    .header-left { display: flex; align-items: center; gap: 12px; }
-    .header-left i { color: var(--accent); font-size: 24px; }
-    .header-left h1 { font-size: 18px; font-weight: 600; }
-    .header-left span { font-size: 12px; color: var(--text-secondary); background: var(--bg-card); padding: 2px 8px; border-radius: 10px; }
-    .header-right { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--text-secondary); }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-    .status-dot.online { background: var(--success); }
-    .sidebar { background: var(--bg-secondary); border-right: 1px solid var(--border); overflow-y: auto; padding: 16px; }
-    .sidebar h2 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 12px; }
-    .basin-card { background: var(--bg-card); border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; }
-    .basin-card:hover { border-left-color: var(--accent); background: #2a3f54; }
-    .basin-card.active { border-left-color: var(--accent); background: #2a3f54; }
-    .basin-card .name { font-weight: 500; font-size: 14px; margin-bottom: 4px; }
-    .basin-card .stats { display: flex; gap: 12px; font-size: 12px; color: var(--text-secondary); }
-    .basin-card .alert-badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
-    .alert-badge.red { background: var(--danger); color: white; }
-    .alert-badge.orange { background: var(--warning); color: #333; }
-    .alert-badge.yellow { background: #ffee58; color: #333; }
-    .alert-badge.green { background: var(--success); color: white; }
-    .main-content { display: grid; grid-template-rows: 1fr auto; overflow: hidden; }
-    #map { width: 100%; height: 100%; }
-    .panels { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-height: 260px; overflow-y: auto; }
-    .panel { background: var(--bg-card); border-radius: 8px; padding: 16px; }
-    .panel h3 { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
-    .panel h3 i { font-size: 14px; }
-    .metric { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); }
-    .metric:last-child { border-bottom: none; }
-    .metric .label { font-size: 12px; color: var(--text-secondary); }
-    .metric .value { font-size: 14px; font-weight: 600; }
-    .metric .value.danger { color: var(--danger); }
-    .metric .value.warning { color: var(--warning); }
-    .metric .value.success { color: var(--success); }
-    .chart-container { height: 120px; }
-    .alert-list { max-height: 180px; overflow-y: auto; }
-    .alert-item { padding: 8px; border-radius: 6px; margin-bottom: 6px; font-size: 12px; }
-    .alert-item.red { background: rgba(239,83,80,0.15); border-left: 3px solid var(--danger); }
-    .alert-item.orange { background: rgba(255,167,38,0.15); border-left: 3px solid var(--warning); }
-    .alert-item.yellow { background: rgba(255,238,88,0.15); border-left: 3px solid #ffee58; }
-    .toast { position: fixed; top: 70px; right: 20px; padding: 12px 20px; border-radius: 8px; font-size: 13px; z-index: 9999; animation: slideIn 0.3s ease; }
-    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HidroAlerta SE - Sistema de Alerta Temprana</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif; background:#0a0e17; color:#e0e6ed; }
+.header { background:linear-gradient(135deg,#0d1520,#162032); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #1e3a5f; }
+.header h1 { font-size:1.3em; color:#4fc3f7; }
+.header .status { font-size:0.85em; color:#78909c; }
+.main { display:grid; grid-template-columns:1fr 380px; height:calc(100vh - 50px); }
+#map { width:100%; height:100%; }
+.sidebar { overflow-y:auto; background:#0d1520; border-left:1px solid #1e3a5f; padding:12px; }
+.group-title { font-size:0.9em; color:#4fc3f7; margin:12px 0 6px; padding:4px 8px; background:#0a1628; border-radius:4px; border-left:3px solid #4fc3f7; }
+.group-title.flash { border-left-color:#ff7043; color:#ff7043; }
+.basin-card { background:#121d2e; border-radius:8px; padding:10px; margin-bottom:8px; border:1px solid #1e3a5f; cursor:pointer; transition:border-color 0.2s; }
+.basin-card:hover { border-color:#4fc3f7; }
+.basin-card .name { font-size:0.9em; font-weight:600; color:#fff; }
+.basin-card .meta { font-size:0.75em; color:#78909c; margin-top:2px; }
+.basin-card .values { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px; }
+.val-box { text-align:center; background:#0a1628; border-radius:4px; padding:4px; }
+.val-box .num { font-size:1em; font-weight:700; }
+.val-box .lbl { font-size:0.65em; color:#78909c; }
+.alert-green .num { color:#66bb6a; }
+.alert-yellow .num { color:#ffee58; }
+.alert-orange .num { color:#ffa726; }
+.alert-red .num { color:#ef5350; }
+.sub-list { font-size:0.75em; margin-top:6px; padding-top:6px; border-top:1px solid #1e3a5f; }
+.sub-item { display:flex; justify-content:space-between; padding:2px 0; color:#90a4ae; }
+.sub-item .sub-flow { color:#4fc3f7; }
+#hydro-chart { width:100%; height:180px; margin-top:10px; background:#0a1628; border-radius:8px; padding:8px; }
+.alerts-panel { margin-top:10px; }
+.alert-item { padding:6px 8px; border-radius:4px; margin-bottom:4px; font-size:0.8em; }
+.alert-item.red { background:rgba(239,83,80,0.15); border:1px solid #ef5350; color:#ef5350; }
+.alert-item.orange { background:rgba(255,167,38,0.15); border:1px solid #ffa726; color:#ffa726; }
+.alert-item.yellow { background:rgba(255,238,88,0.15); border:1px solid #ffee58; color:#ffee58; }
+</style>
 </head>
 <body>
-  <div class="app">
-    <header class="header">
-      <div class="header-left">
-        <i class="fas fa-water"></i>
-        <h1>HidroAlerta SE</h1>
-        <span>Sureste de Espana</span>
-      </div>
-      <div class="header-right">
-        <span><span class="status-dot online"></span> Conectado</span>
-        <span id="station-count">0 estaciones</span>
-        <span id="last-update">--</span>
-      </div>
-    </header>
-    <aside class="sidebar">
-      <h2><i class="fas fa-layer-group"></i> Cuencas Hidrograficas</h2>
-      <div id="basin-list"></div>
-    </aside>
-    <main class="main-content">
-      <div id="map"></div>
-      <div class="panels">
-        <div class="panel">
-          <h3><i class="fas fa-tachometer-alt"></i> Hidrologia</h3>
-          <div id="hydro-metrics">
-            <div class="metric"><span class="label">Caudal punta</span><span class="value" id="peak-flow">-- m3/s</span></div>
-            <div class="metric"><span class="label">Precipitacion efectiva</span><span class="value" id="eff-precip">-- mm</span></div>
-            <div class="metric"><span class="label">Metodo dominante</span><span class="value" id="method">--</span></div>
-            <div class="metric"><span class="label">Tc (Temez)</span><span class="value" id="tc-val">-- h</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3><i class="fas fa-chart-line"></i> Hidrograma</h3>
-          <div class="chart-container"><canvas id="hydro-chart"></canvas></div>
-        </div>
-        <div class="panel">
-          <h3><i class="fas fa-exclamation-triangle"></i> Alertas Activas</h3>
-          <div class="alert-list" id="alert-list"></div>
-        </div>
-      </div>
-    </main>
+<div class="header">
+  <h1>HidroAlerta SE - Modelo Semi-Distribuido</h1>
+  <div class="status" id="status">Conectando...</div>
+</div>
+<div class="main">
+  <div id="map"></div>
+  <div class="sidebar" id="sidebar">
+    <canvas id="hydro-chart"></canvas>
+    <div class="alerts-panel" id="alerts"></div>
+    <div id="basin-cards"></div>
   </div>
-  <script>
-    // Basin data
-    const BASINS = [
-      { id:'segura', name:'Rio Segura', area:18870, cn:75, center:[38.05,-1.13], thresholds:{yellow:100,orange:300,red:600} },
-      { id:'guadalentin', name:'Rio Guadalentin', area:3300, cn:78, center:[37.78,-1.7], thresholds:{yellow:50,orange:150,red:350} },
-      { id:'mula', name:'Rio Mula', area:651, cn:72, center:[38.04,-1.49], thresholds:{yellow:30,orange:80,red:200} },
-      { id:'mundo', name:'Rio Mundo', area:2420, cn:70, center:[38.48,-2.1], thresholds:{yellow:60,orange:180,red:400} },
-      { id:'almanzora', name:'Rio Almanzora', area:2611, cn:80, center:[37.35,-2.1], thresholds:{yellow:30,orange:100,red:250} },
-      { id:'andarax', name:'Rio Andarax', area:2200, cn:77, center:[36.95,-2.5], thresholds:{yellow:25,orange:80,red:200} },
-      { id:'vinalopo', name:'Rio Vinalopo', area:1692, cn:74, center:[38.35,-0.8], thresholds:{yellow:40,orange:120,red:280} },
-      { id:'guadalfeo', name:'Rio Guadalfeo', area:1300, cn:73, center:[36.85,-3.35], thresholds:{yellow:35,orange:100,red:250} },
-      { id:'nacimiento', name:'Rio Nacimiento', area:987, cn:76, center:[37.15,-2.65], thresholds:{yellow:25,orange:70,red:180} },
-      { id:'adra', name:'Rio Adra', area:744, cn:75, center:[36.85,-2.95], thresholds:{yellow:20,orange:60,red:150} },
-      { id:'serpis', name:'Rio Serpis', area:752, cn:71, center:[38.85,-0.3], thresholds:{yellow:40,orange:110,red:260} },
-      { id:'jucar_bajo', name:'Jucar Bajo', area:4600, cn:72, center:[39.1,-0.5], thresholds:{yellow:80,orange:250,red:500} }
-    ];
+</div>
+<script>
+const map = L.map('map').setView([37.9,-1.2],8);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+  maxZoom:19,attribution:'CartoDB'
+}).addTo(map);
 
-    let map, hydroChart, selectedBasin = null;
-    const basinMarkers = new Map();
+let chart = null;
+const basinLayers = {};
+const subLayers = {};
 
-    // Initialize map
-    function initMap() {
-      map = L.map('map', { zoomControl: false }).setView([37.8, -1.5], 8);
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: 'CartoDB', maxZoom: 19
+function getAlertClass(flow, thresholds) {
+  if (!thresholds) return 'alert-green';
+  if (flow >= thresholds.red) return 'alert-red';
+  if (flow >= thresholds.orange) return 'alert-orange';
+  if (flow >= thresholds.yellow) return 'alert-yellow';
+  return 'alert-green';
+}
+
+function getAlertColor(cls) {
+  const colors = {'alert-red':'#ef5350','alert-orange':'#ffa726','alert-yellow':'#ffee58','alert-green':'#66bb6a'};
+  return colors[cls] || '#66bb6a';
+}
+
+function renderBasins(basins) {
+  const cards = document.getElementById('basin-cards');
+  cards.innerHTML = '';
+
+  // Agrupar por tipo
+  const mainBasins = basins.filter(b => b.type === 'main_basin');
+  const flashGroups = basins.filter(b => b.type === 'flash_flood_group');
+
+  if (mainBasins.length > 0) {
+    cards.innerHTML += '<div class="group-title">CUENCAS PRINCIPALES</div>';
+    mainBasins.forEach(b => cards.innerHTML += buildCard(b));
+  }
+  if (flashGroups.length > 0) {
+    cards.innerHTML += '<div class="group-title flash">RAMBLAS Y ARROYOS</div>';
+    flashGroups.forEach(b => cards.innerHTML += buildCard(b));
+  }
+
+  // Mapa
+  Object.values(basinLayers).forEach(l => map.removeLayer(l));
+  Object.values(subLayers).forEach(l => map.removeLayer(l));
+
+  basins.forEach(b => {
+    if (!b.bounds) return;
+    const cls = getAlertClass(b.currentFlow, b.thresholds);
+    const color = getAlertColor(cls);
+    const rect = L.rectangle([
+      [b.bounds.south, b.bounds.west],
+      [b.bounds.north, b.bounds.east]
+    ], {color, weight:1, fillOpacity:0.08, dashArray:'4'}).addTo(map);
+    rect.bindPopup('<b>'+b.name+'</b><br>Q='+(b.currentFlow||0)+' m3/s<br>P='+(b.precipitation||0)+' mm');
+    basinLayers[b.id] = rect;
+
+    // Control point marker
+    if (b.controlPoint) {
+      const marker = L.circleMarker(b.controlPoint, {
+        radius: b.type === 'flash_flood_group' ? 4 : 6,
+        fillColor: color, color: '#fff', weight:1, fillOpacity:0.9
       }).addTo(map);
-      L.control.zoom({ position: 'topright' }).addTo(map);
-
-      BASINS.forEach(b => {
-        const marker = L.circleMarker(b.center, {
-          radius: Math.sqrt(b.area) / 15 + 5,
-          fillColor: '#4fc3f7',
-          color: '#29b6f6',
-          weight: 2, opacity: 0.8, fillOpacity: 0.4
-        }).addTo(map);
-        marker.bindPopup('<b>' + b.name + '</b><br>Area: ' + b.area + ' km2<br>CN: ' + b.cn);
-        marker.on('click', () => selectBasin(b.id));
-        basinMarkers.set(b.id, marker);
-      });
+      marker.bindTooltip(b.name, {permanent:false});
+      basinLayers[b.id + '_pt'] = marker;
     }
+  });
+}
 
-    // Render basin sidebar
-    function renderBasins() {
-      const list = document.getElementById('basin-list');
-      list.innerHTML = BASINS.map(b => {
-        const level = getAlertLevel(b);
-        return '<div class="basin-card" onclick="selectBasin(${b.id}$)" id="bc-" + b.id + '>' +
-          '<div class="name">' + b.name + ' <span class="alert-badge " + level + '>' + level + '</span></div>' +
-          '<div class="stats"><span>' + b.area + ' km2</span><span>CN: ' + b.cn + '</span></div></div>';
-      }).join('');
-    }
-
-    function getAlertLevel(basin) {
-      const flow = basin.currentFlow || 0;
-      const t = basin.thresholds;
-      if (flow >= t.red) return 'red';
-      if (flow >= t.orange) return 'orange';
-      if (flow >= t.yellow) return 'yellow';
-      return 'green';
-    }
-
-    function selectBasin(id) {
-      selectedBasin = BASINS.find(b => b.id === id);
-      if (!selectedBasin) return;
-      document.querySelectorAll('.basin-card').forEach(el => el.classList.remove('active'));
-      const card = document.getElementById('bc-' + id);
-      if (card) card.classList.add('active');
-      map.setView(selectedBasin.center, 10);
-      updateHydroPanel(selectedBasin);
-    }
-
-    function updateHydroPanel(basin) {
-      const S = (25400 / basin.cn) - 254;
-      const P = basin.precipitation || Math.random() * 30;
-      const Ia = 0.2 * S;
-      const Pe = P > Ia ? Math.pow(P - Ia, 2) / (P + 0.8 * S) : 0;
-      const C = basin.cn >= 80 ? 0.6 : basin.cn >= 70 ? 0.45 : 0.3;
-      const I = basin.intensity || Math.random() * 20;
-      const Qr = (C * I * basin.area) / 3.6;
-      const tc = basin.tc || 5;
-
-      document.getElementById('peak-flow').textContent = Qr.toFixed(1) + ' m3/s';
-      document.getElementById('eff-precip').textContent = Pe.toFixed(1) + ' mm';
-      document.getElementById('method').textContent = 'Racional Mod.';
-      document.getElementById('tc-val').textContent = tc.toFixed(1) + ' h';
-
-      // Update chart
-      const labels = []; const data = [];
-      const R = tc * 0.7; const dt = 0.5;
-      const C1 = dt / (R + 0.5 * dt); const C2 = 1 - C1;
-      let Qprev = 0;
-      for (let t = 0; t < tc * 3; t += dt) {
-        const inflow = t <= tc ? (Pe * basin.area * 1000) / (tc * 3600) : 0;
-        const Q = C1 * inflow + C2 * Qprev;
-        labels.push(t.toFixed(1));
-        data.push(Math.max(0, Q));
-        Qprev = Q;
-      }
-      if (hydroChart) {
-        hydroChart.data.labels = labels;
-        hydroChart.data.datasets[0].data = data;
-        hydroChart.update();
-      }
-    }
-
-    function renderAlerts() {
-      const list = document.getElementById('alert-list');
-      const activeAlerts = BASINS.filter(b => getAlertLevel(b) !== 'green');
-      if (activeAlerts.length === 0) {
-        list.innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:20px;font-size:12px"><i class="fas fa-check-circle" style="color:var(--success);font-size:24px;margin-bottom:8px"></i><br>Sin alertas activas</div>';
-        return;
-      }
-      list.innerHTML = activeAlerts.map(b => {
-        const level = getAlertLevel(b);
-        return '<div class="alert-item " + level + '><strong>' + b.name + '</strong> - ' + level.toUpperCase() + '</div>';
-      }).join('');
-    }
-
-    function initChart() {
-      const ctx = document.getElementById('hydro-chart').getContext('2d');
-      hydroChart = new Chart(ctx, {
-        type: 'line',
-        data: { labels: [], datasets: [{ label: 'Caudal (m3/s)', data: [], borderColor: '#4fc3f7', backgroundColor: 'rgba(79,195,247,0.1)', fill: true, tension: 0.4, pointRadius: 0 }] },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: true, ticks: { color: '#9aa0a6', maxTicksLimit: 6, font: { size: 10 } }, grid: { color: '#2d4055' } }, y: { display: true, ticks: { color: '#9aa0a6', font: { size: 10 } }, grid: { color: '#2d4055' } } } }
-      });
-    }
-
-    // WebSocket connection
-    function connectWS() {
-      try {
-        const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const ws = new WebSocket(protocol + '//' + location.host);
-        ws.onmessage = (e) => {
-          const msg = JSON.parse(e.data);
-          if (msg.type === 'init' || msg.type === 'update') {
-            if (msg.data.stations) {
-              document.getElementById('station-count').textContent = msg.data.stations.length + ' estaciones';
-            }
-            if (msg.data.lastUpdate) {
-              document.getElementById('last-update').textContent = new Date(msg.data.lastUpdate).toLocaleTimeString();
-            }
-            renderBasins();
-            renderAlerts();
-          }
-        };
-        ws.onclose = () => setTimeout(connectWS, 5000);
-      } catch(e) { console.log('WS not available, running in static mode'); }
-    }
-
-    // Init
-    document.addEventListener('DOMContentLoaded', () => {
-      initMap();
-      renderBasins();
-      renderAlerts();
-      initChart();
-      selectBasin('segura');
-      connectWS();
+function buildCard(b) {
+  const cls = getAlertClass(b.currentFlow, b.thresholds);
+  const subs = b.hydroResult?.subcatchmentResults || [];
+  let subHtml = '';
+  if (subs.length > 0) {
+    subHtml = '<div class="sub-list">';
+    subs.forEach(sub => {
+      subHtml += '<div class="sub-item"><span>'+sub.subName+'</span>';
+      subHtml += '<span class="sub-flow">'+(sub.routedPeak||0)+' m3/s</span></div>';
     });
-  </script>
+    subHtml += '</div>';
+  }
+  return '<div class="basin-card" onclick="selectBasin('"+b.id+"')">' +
+    '<div class="name">'+b.name+'</div>' +
+    '<div class="meta">'+(b.hydroResult?.method||'-')+' | '+(b.subcatchmentCount||0)+' subcuencas | '+b.area+' km2</div>' +
+    '<div class="values">' +
+    '<div class="val-box '+cls+'"><div class="num">'+(b.currentFlow||0)+'</div><div class="lbl">m3/s</div></div>' +
+    '<div class="val-box"><div class="num" style="color:#4fc3f7">'+(b.precipitation||0)+'</div><div class="lbl">mm</div></div>' +
+    '<div class="val-box"><div class="num" style="color:#ce93d8">'+(b.intensity||0)+'</div><div class="lbl">mm/h max</div></div>' +
+    '</div>' + subHtml + '</div>';
+}
+
+function selectBasin(id) {
+  fetch('/api/basins/'+id+'/hydrograph')
+    .then(r => r.json())
+    .then(data => {
+      if (data.hydrograph && data.hydrograph.length > 0) {
+        renderHydrograph(data);
+      }
+    }).catch(() => {});
+}
+
+function renderHydrograph(data) {
+  const ctx = document.getElementById('hydro-chart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: data.hydrograph.map(h => h.time.toFixed(1)+'h'),
+      datasets: [{
+        label: 'Caudal (m3/s)',
+        data: data.hydrograph.map(h => h.flow),
+        borderColor: '#4fc3f7', backgroundColor: 'rgba(79,195,247,0.1)', fill:true, tension:0.3, pointRadius:0
+      }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      scales: {
+        x: { ticks:{color:'#78909c',maxTicksLimit:8}, grid:{color:'#1e3a5f'} },
+        y: { ticks:{color:'#78909c'}, grid:{color:'#1e3a5f'} }
+      },
+      plugins: { legend:{labels:{color:'#e0e6ed'}} }
+    }
+  });
+}
+
+function renderAlerts(alerts) {
+  const el = document.getElementById('alerts');
+  if (!alerts || alerts.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = alerts.map(a => 
+    '<div class="alert-item "+a.level+"">"+a.message+"</div>"
+  ).join('');
+}
+
+// WebSocket
+function connect() {
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  const ws = new WebSocket(proto + '://' + location.host);
+
+  ws.onopen = () => {
+    document.getElementById('status').textContent = 'Conectado';
+    document.getElementById('status').style.color = '#66bb6a';
+  };
+
+  ws.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === 'init' || msg.type === 'update') {
+      renderBasins(msg.data.basins || []);
+      renderAlerts(msg.data.alerts || []);
+      if (msg.data.lastUpdate) {
+        document.getElementById('status').textContent = 
+          'Actualizado: ' + new Date(msg.data.lastUpdate).toLocaleTimeString();
+      }
+      // Marcar estaciones
+      (msg.data.stations || []).forEach(st => {
+        if (st.lat && st.lon) {
+          L.circleMarker([st.lat, st.lon], {
+            radius:2, fillColor:'#90a4ae', color:'#90a4ae', weight:0, fillOpacity:0.5
+          }).addTo(map).bindTooltip(st.name || st.id, {permanent:false});
+        }
+      });
+    }
+  };
+
+  ws.onclose = () => {
+    document.getElementById('status').textContent = 'Desconectado - Reconectando...';
+    document.getElementById('status').style.color = '#ef5350';
+    setTimeout(connect, 5000);
+  };
+}
+connect();
+</script>
 </body>
 </html>
